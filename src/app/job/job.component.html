@@ -1,0 +1,61 @@
+<div class="page-container">
+    <div class="row">
+        <div class="job-container col-sm-6 justify-content-center">
+            <div class="heaader text-center">
+                Your Information
+            </div>
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-text text-center"> Hi <span class="car-title"> {{receivedData.fullName}} </span>  </h5>
+                    <div class="card-text"><span class="label">Your Email:</span> {{receivedData.email}} .</div>
+                    <div class="card-text"><span class="label">Your Name:</span> {{receivedData.fullName}} .</div>
+                    <div class="card-text" *ngIf="receivedData.lang.langName !== null"><span class="label"> Language : </span> {{receivedData.lang.langName}} . </div>
+                    <div class="card-text" *ngIf="receivedData.lang.langLevel !== null"><span class="label"> your Level : </span> {{receivedData.lang.langLevel}} .</div>
+                </div>
+            </div>
+            <div class="heaader text-center">
+                Jobs Available
+            </div>   
+            <div class="card">
+                <div class="card-body">
+                    <form class="form-contanier"  [formGroup]="myForm" novalidate>
+                        <div class="form-group row">
+                            <label class="col-form-label col-sm-2 label"> Jobs </label>
+                            <div class="col-sm-10">
+                                <div class="form-group row" *ngFor="let data of Data; let i=index">
+                                    <div class="col-sm-8 float-left">
+                                        <div class="form-check ">
+                                            <label class="labels">
+                                                <span class="lang col-sm-4 jobs">{{data.name}}</span>
+                                                <span class="col-sm-4 applicant-num "> {{data.applicantNamber}} applied</span>
+                                                <input type="checkbox" [value]="data.value"
+                                                    (change)="onCheckboxChange($event)">
+                                                <span class="checkmark"></span>
+                                            </label>
+                                        </div>
+                                        
+                                    </div>
+                                </div>
+                                <p class="error" *ngIf="this.myForm.controls['checkArray'].errors?.required">
+                                    Checkbox is required, select atleast one value.
+                                </p>
+                                <div class="form-group row">
+                                    <div class="col-sm-2"></div>
+                                    <div class="col-sm-10">
+                                        <button type="submit" class="btn button-color" [disabled]="!myForm.valid" (click)="onsubmit()">Apply</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+        <div class="img-container col-sm-6">
+            <img class="center" src="../../assets/images/applicant.png">
+        </div>
+    </div>
+</div>
+
+
+

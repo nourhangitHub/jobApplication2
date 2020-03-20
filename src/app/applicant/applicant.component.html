@@ -1,0 +1,61 @@
+<div class="page-container">
+    <div class="row">
+      <div class="form-container col-sm-6 justify-content-center">
+        <h2 class="title">Waiting for you !</h2>
+        <form class="form-contanier"  [formGroup]="myForm" novalidate>
+        <div class="row ">
+          <div class="col-sm-12">
+            <div class="form-group row">
+              <label for="name" class="col-md-2 col-sm-2  col-form-label">Full Name</label>
+              <div class="col-md-10 col-sm-10">
+                <input type="text" class="form-control" name="name" id="name" placeholder="Please Enter your name" required
+                 formControlName="fullName"
+                  [ngClass]="{'is-invalid': myForm.get('fullName').touched && myForm.get('fullName').invalid}">
+                <div class="invalid-feedback">
+                  <div> name is required</div>
+                </div>
+              </div>
+            </div>
+            <div class="form-group row">
+              <label for="inputEmail" class="col-sm-2 col-form-label">Email</label>
+              <div class="col-md-10 col-sm-10">
+                <input type="email" class="form-control" name="email" id="inputEmail" placeholder="Please Enter your Email" required
+                 formControlName="email" [ngClass]="{'is-invalid': myForm.get('email').touched && myForm.get('email').invalid}">
+                <div *ngIf="myForm.get('email').touched && myForm.get('email').invalid" class="invalid-feedback">
+                  <div *ngIf="myForm.get('email').errors.required">Email is required</div>
+                  <div *ngIf="myForm.get('email').errors.email"> Email must invalid</div>
+                </div>
+              </div>
+            </div>
+            <fieldset class="form-group">
+              <div class="row" formGroupName="lang">
+                <label class="col-form-label col-md-2 col-sm-2"> language</label>
+                <select class="custom-select col-md-4 col-sm-4" name="language"  formControlName="langName">
+                  <option selected >Please Choose your language</option>
+                  <option *ngFor="let lang of langs" >{{lang}}</option>
+                </select>
+                <label class="col-form-label col-md-2 col-sm-2 level">your level</label>
+                <select class="custom-select col-md-3 col-sm-3" name="level"  formControlName="langLevel">
+                  <option selected > your level</option>
+                   <option *ngFor="let level of levels" >{{level}}</option> 
+                </select>
+              </div>
+            </fieldset>
+            <div class="form-group row">
+              <div class="col-md-2 col-sm-2"></div>
+              <div class="col-md-10 col-sm-10">
+                <button type="submit" class="btn button-color" [disabled]="!myForm.valid" (click)="onsubmit()">Apply</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="img-container col-md-6 col-sm-6">
+      <img class="center" src="../../assets/images/applicant.png">
+    </div>
+    </div>
+  </div>
+  
+  
+  
